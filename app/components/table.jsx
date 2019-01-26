@@ -3,54 +3,44 @@ import React from 'react';
 class Table extends React.Component {
 
 	render() {
+		const { items, onManage } = this.props;
 		return (
 			<div className="table-bx">
 				<table className="table table-striped">
-				  <thead>
-				    <tr>
-				      <th colSpan="2">User</th>
-				      <th>Commit</th>
-				      <th>Date</th>
-				      <th></th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td className="w-1"><span className="avatar"></span></td>
-				      <td>Ronald Bradley</td>
-				      <td>Initial commit</td>
-				      <td className="text-nowrap">May 6, 2018</td>
-				      <td className="w-1"><a href="#" className="icon"><i className="fe fe-trash"></i></a></td>
-				    </tr>
-				    <tr>
-				      <td><span className="avatar"></span></td>
-				      <td>Russell Gibson</td>
-				      <td>Main structure</td>
-				      <td className="text-nowrap">April 22, 2018</td>
-				      <td><a href="#" className="icon"><i className="fe fe-trash"></i></a></td>
-				    </tr>
-				    <tr>
-				      <td><span className="avatar"></span></td>
-				      <td>Beverly Armstrong</td>
-				      <td>Left sidebar adjustments</td>
-				      <td className="text-nowrap">April 15, 2018</td>
-				      <td><a href="#" className="icon"><i className="fe fe-trash"></i></a></td>
-				    </tr>
-				    <tr>
-				      <td><span className="avatar"></span></td>
-				      <td>Bobby Knight</td>
-				      <td>Topbar dropdown style</td>
-				      <td className="text-nowrap">April 8, 2018</td>
-				      <td><a href="#" className="icon"><i className="fe fe-trash"></i></a></td>
-				    </tr>
-				    <tr>
-				      <td><span className="avatar"></span></td>
-				      <td>Sharon Wells</td>
-				      <td>Fixes #625</td>
-				      <td className="text-nowrap">April 9, 2018</td>
-				      <td><a href="#" className="icon"><i className="fe fe-trash"></i></a></td>
-				    </tr>
-				  </tbody>
+					<thead>
+						<tr>
+							<th>Time</th>
+							<th>Category</th>
+							<th>Platform</th>
+							<th>Location</th>
+							<th>Photos</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{items.map((x, indx) => {
+							return (<tr key={indx}>
+								<td className="text-nowrap">{x.timestamp}</td>
+								<td>{x.landobservations.map(x => x.landuse).join(',')}</td>
+								<td>
+									<strong>{x.platform.device}</strong><br />
+									<small>{x.platform.osversion}</small>	
+								</td>
+								<td>
+									{x.location.lat}<br />
+									{x.location.lon}
+								</td>
+								<td>
+									{x.photos.map(x => x.direction).join(',')}
+								</td>
+								<td>
+									<a href="javascript:void(0)"
+										onClick={() => onManage(x)}
+										className="btn btn-sm btn-info">Manage</a>
+								</td>
+							</tr>)
+						})}
+					</tbody>
 				</table>
 			</div>
 		)
