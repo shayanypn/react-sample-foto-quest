@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Map from './map.jsx';
+import { DeviceIcon } from '../utils.js';
 const axios = require('axios');
 const toastr = require('toastr');
 
@@ -11,8 +12,6 @@ import FolderIcon from '../assets/folder.png';
 import ClockIcon from '../assets/clock.png';
 import CameraIcon from '../assets/camera.png';
 
-import AndroidIcon from '../assets/android.png';
-import IOSIcon from '../assets/ios.png';
 
 class FormDetail extends React.Component {
 
@@ -47,7 +46,6 @@ class FormDetail extends React.Component {
 	render() {
 		const { item, onBack } = this.props;
 		const photos = {};
-		let DeviceIcon = null;
 
 		if (!item)
 			return (<div />);
@@ -55,13 +53,6 @@ class FormDetail extends React.Component {
 		item.photos.forEach(x =>{
 			photos[x.direction] = x.url;
 		});
-
-
-		if (item.platform.device.toLowerCase().indexOf('android') !== -1) {
-			DeviceIcon = AndroidIcon;
-		}else if (item.platform.device.toLowerCase().indexOf('iphone') !== -1) {
-			DeviceIcon = IOSIcon;
-		}
 
 
 		return (
@@ -79,7 +70,7 @@ class FormDetail extends React.Component {
 									<td width="1" className="pl-0 pr-0"><img src={MobileIcon} className="icon" /></td>
 									<td>Platform</td>
 									<td className="text-text">
-										Device: {DeviceIcon ? (<img className="icon icon-device" src={DeviceIcon} />) : ''} <b>{item.platform.device}</b><br />
+										Device: {DeviceIcon ? (<img className="icon icon-device" src={DeviceIcon(item.platform.device)} />) : ''} <b>{item.platform.device}</b><br />
 										OS Version: <b>{item.platform.osversion}</b><br />
 										App Version: <b>{item.platform.appversion}</b><br />
 									</td>

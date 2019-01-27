@@ -76,6 +76,43 @@ body{
 	}
 }
 
+.table-bx {
+	.icon {
+		width: 26px;
+	}
+	.col-sort {
+		cursor: pointer;
+		position: relative;
+		padding-right: 10px;
+		&.sort-asc {
+			&:after {
+				position: absolute;
+				content: ' ';
+				width: 0; 
+				height: 0; 
+				border-left: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-bottom: 10px solid #aaa;
+				top: 6px;
+				right: -9px;
+			}
+		}
+		&.sort-desc {
+			&:after {
+				position: absolute;
+				content: ' ';
+				width: 0;
+				height: 0;
+				border-left: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-top: 10px solid #aaa;
+				top: 6px;
+				right: -9px;
+			}
+		}
+	}
+}
+
 
 /*******
  * 	loading
