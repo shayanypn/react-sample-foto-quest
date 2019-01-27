@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 class Table extends React.Component {
 
@@ -20,7 +21,7 @@ class Table extends React.Component {
 					<tbody>
 						{items.map((x, indx) => {
 							return (<tr key={indx}>
-								<td className="text-nowrap">{x.timestamp}</td>
+								<td className="text-nowrap">{moment(x.timestamp).format('YYYY/MM/DD HH:mm:ss')}</td>
 								<td>{x.landobservations.map(x => x.landuse).join(',')}</td>
 								<td>
 									<strong>{x.platform.device}</strong><br />

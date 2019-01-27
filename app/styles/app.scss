@@ -36,7 +36,30 @@ body{
     }
 }
 .form-bx {
-	padding: 15px;
+	padding: 15px 25px;
+	.photos-bx {
+		background-color: #efefef;
+		border: 1px solid #dedede;
+		border-radius: 4px;
+		padding: 10px;
+		img {
+			border: 1px solid #aaaaaa;
+			border-radius: 4px;
+			margin-bottom: 10px;
+		}
+	}
+	.form-submit-bx {
+		background-color: #efefef;
+		border: 1px solid #dedede;
+		border-radius: 4px;
+		padding: 10px 10px 0 10px;
+		width: 100%;
+	}
+	.card-table {
+		.icon {
+			width: 32px;
+		}
+	}
 }
 
 
