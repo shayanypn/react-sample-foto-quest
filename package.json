@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "homepage": "https://github.com/shayanypn/react-sample-foto-quest/",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "css-loader": "^0.28.5",
+    "gh-pages": "^2.0.1",
     "google-map-react": "^1.1.2",
     "html-webpack-plugin": "^2.30.1",
     "moment": "^2.24.0",
