@@ -16,23 +16,29 @@ const AnyReactComponent = ({ text }) => (
     {text}
   </div>
 );
+const defaultProps = {
+  lat: 59.95,
+  lng: 30.33,
+  zoom: 11
+};
 
 class SimpleMap extends React.Component {
 
   render() {
-	  const defaultProps = {
-	    center: {lat: 59.95, lng: 30.33},
-	    zoom: 11
-	  };
+    const {lat, lon} = this.props;
+    const center = {
+      lat: parseFloat(lat || defaultProps.lat),
+      lng: parseFloat(lon || defaultProps.lng),
+    };
     return (
        <GoogleMapReact
-        defaultCenter={defaultProps.center}
+        defaultCenter={center}
         defaultZoom={defaultProps.zoom}
       >
         <AnyReactComponent 
-          lat={59.955413} 
-          lng={30.337844} 
-          text={'hello'} 
+          lat={lat || defaultProps.lat}
+          lng={lon || defaultProps.lon} 
+          text={'here'} 
         />
       </GoogleMapReact>
     );

@@ -232,18 +232,19 @@ class App extends Component {
 		return (
 			<div className="container">
 				{loading ? <Loading /> : ''}
-				<Card title="Form Title" noBody={true}>
+				{selcetedItem ? (<Card title="Check Entery Details" 
+						option={{
+							label: 'Bak to List',
+							action: this.onBack.bind(this)
+						}}
+						noBody={true}>
 					<FormDetail 
 						item={selcetedItem}
 						onBack={this.onBack.bind(this)}
 						/>
-				</Card>
-				<Card title="Table Title" noBody={true}>
-					<Table
-						items={DATA}
-						onManage={this.onManage.bind(this)}
-						/>
-				</Card>
+				</Card>) : (<Card title="List Of Photos" noBody={true}>
+					<Table items={DATA} onManage={this.onManage.bind(this)} />
+				</Card>)}
 			</div>
 		)
 	}

@@ -25,9 +25,16 @@ body{
     	background-color: #fff;
     	border-radius: 4px 4px 0 0;
     	padding: 10px 15px;
+    	display: flex;
+		align-items: center;
     	.card-title {
     		margin: 0px;
     		color: #888;
+    	}
+    	.card-options {
+			align-items: center;
+			margin-right: 3px;
+			margin-left: auto;
     	}
     }
     .card-body {
@@ -58,6 +65,12 @@ body{
 	.card-table {
 		.icon {
 			width: 32px;
+			&.icon-device {
+				width: 20px;
+				position: relative;
+				margin-left: 5px;
+				top: -4px;
+			}
 		}
 	}
 }
