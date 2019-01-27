@@ -3,6 +3,7 @@ import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Map from './map.jsx';
 const axios = require('axios');
+const toastr = require('toastr');
 
 import MobileIcon from '../assets/mobile.png';
 import MarkerIcon from '../assets/marker.png';
@@ -16,22 +17,29 @@ import IOSIcon from '../assets/ios.png';
 class FormDetail extends React.Component {
 
 	onSubmit(){
-
-		if (!this.comment.value) {
-			return;
-		}
+		const { onLoading, onBack } = this.props;
 		if (!this.evaluation.value) {
+			toastr.warning('Please choose a status?')
+			return;
+		}
+		if (!this.comment.value) {
+			toastr.warning('Please fill the comment section?')
 			return;
 		}
 
+		onLoading(true);
 		axios.post('https://demo0929535.mockable.io/evaluate', {
 			evaluation: this.evaluation.value,
 			comment: this.comment.value
 		})
 		.then( response => {
-			console.log(response);
+			onLoading(false);
+			toastr.success('Your comment success submited!');
+			onBack();
 		})
 		.catch( error => {
+			onLoading(false);
+			toastr.error('Problem on your operation, please try again later!');
 			console.log(error);
 		});
 	}
