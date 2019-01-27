@@ -2,15 +2,33 @@ import React from 'react';
 import moment from 'moment';
 
 class Table extends React.Component {
+	constructor (props) {
+		super(props);
+		this.state = {
+			orderType: null,
+			orderField: null,
+			items: props.items || []
+		}
+	}
+
+	onOrder(field) {
+		const { orderType, orderField } = this.state;
+
+		console.log('field', field, orderType, orderField);
+	}
 
 	render() {
-		const { items, onManage } = this.props;
+		const { onManage } = this.props;
+		const { items } = this.state;
 		return (
 			<div className="table-bx">
 				<table className="table table-striped">
 					<thead>
 						<tr>
-							<th>Time</th>
+							<th>
+								<span
+									onClick={e => this.onOrder('time') }>Time</span>
+							</th>
 							<th>Category</th>
 							<th>Platform</th>
 							<th>Location</th>

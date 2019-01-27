@@ -13,16 +13,19 @@ class App extends Component {
 		this.state = {
 			selcetedItem: null,
 			loading: false,
+			view: null,
 			items: []
 		}
 	}
 	onManage(item){
 		this.setState({
+			view: 'form',
 			selcetedItem: item
 		})
 	}
 	onBack(){
 		this.setState({
+			view: 'list',
 			selcetedItem: null
 		})
 	}
@@ -33,11 +36,14 @@ class App extends Component {
 	}
 	componentDidMount() {
 		this.onLoading(true);
+
+
 		axios.get('https://api.myjson.com/bins/jpfmg')
 		.then( response => {
 			this.onLoading(false);
 			this.setState({
-				items: response.data
+				items: response.data,
+				view: 'list'
 			});
 		})
 		.catch( error => {
@@ -47,13 +53,13 @@ class App extends Component {
 		});
 	}
 	render() {
-		const { items, loading, selcetedItem } = this.state;
+		const { view, loading, selcetedItem } = this.state;
 		
 
 		return (
 			<div className="container">
 				{loading ? <Loading /> : ''}
-				{selcetedItem ? (<Card title="Check Entery Details" 
+				{view == 'form' ? (<Card title="Check Entery Details" 
 						option={{
 							label: 'Bak to List',
 							action: this.onBack.bind(this)
@@ -64,12 +70,13 @@ class App extends Component {
 						onBack={this.onBack.bind(this)}
 						onLoading={this.onLoading.bind(this)}
 						/>
-				</Card>) : (<Card title="List Of Photos" noBody={true}>
+				</Card>) : '' }
+				{view == 'list' ? (<Card title="List Of Photos" noBody={true}>
 					<Table
-						items={items}
+						items={this.state.items}
 						onManage={this.onManage.bind(this)}
 						/>
-				</Card>)}
+				</Card>) : ''}
 			</div>
 		)
 	}
